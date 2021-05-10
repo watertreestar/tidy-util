@@ -16,6 +16,8 @@ import java.util.jar.JarFile;
  * 扫描类路径(classpath)下指定包下的类
  */
 public class Scanner {
+    public static final String JAR_ENTRY_CHAR = "!";
+
     private String basePackage;
 
     private ClassLoader classLoader;
@@ -32,12 +34,16 @@ public class Scanner {
         this.basePackage = basePackage;
     }
 
-    public List<Class<?>> scan(){
+    public List<String> scan(){
         List<String> resources = new ArrayList<>();
         Arrays.asList(this.basePackage.split(",")).stream().forEach(pkg -> {
-
+            try {
+                this.doScan(pkg,resources);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
-        return null;
+        return resources;
     }
 
     private void doScan(String pkgName,List<String> resources) throws IOException {
@@ -49,7 +55,7 @@ public class Scanner {
             List<String> list = new ArrayList<>();
             switch (type) {
                 case JAR:
-                    list = scanJar(u.getPath());
+                    list = scanJar(u.getPath(),path);
                     break;
 
                 case FILE:
@@ -75,10 +81,12 @@ public class Scanner {
     /**
      * 扫描JAR文件
      * @param path
+     * @param pkgPath
      * @return
      * @throws IOException
      */
-    private List<String> scanJar(String path) throws IOException {
+    private List<String> scanJar(String path,String pkgPath) throws IOException {
+        path = StringUtil.extractPathFromJar(path);
         JarFile jar = new JarFile(path);
 
         List<String> classNameList = new ArrayList<>(20);
@@ -88,10 +96,9 @@ public class Scanner {
             JarEntry entry = entries.nextElement();
             String name = entry.getName();
 
-            if( (name.startsWith(path)) && (name.endsWith(ResourceType.CLASS_FILE.getTypeString())) ) {
+            if( (name.startsWith(pkgPath)) && (name.endsWith(ResourceType.CLASS_FILE.getTypeString())) ) {
                 name = StringUtil.trimSuffix(name);
                 name = StringUtil.pathToPackage(name);
-
                 classNameList.add(name);
             }
         }
