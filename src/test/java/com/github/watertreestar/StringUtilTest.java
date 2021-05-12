@@ -30,4 +30,18 @@ public class StringUtilTest {
         result = StringUtil.removeLast(str,"!");
         Assert.assertEquals(null,result);
     }
+
+    @Test
+    public void testPkgToPath(){
+        String str = "com.github.watertreestar";
+        String result = StringUtil.packageToPath(str);
+        Assert.assertEquals("com/github/watertreestar",result);
+    }
+
+    @Test
+    public void testPathToPkg(){
+        String str = "com/github/watertreestar";
+        String result = StringUtil.pathToPackage(str);
+        Assert.assertEquals("com.github.watertreestar",result);
+    }
 }
