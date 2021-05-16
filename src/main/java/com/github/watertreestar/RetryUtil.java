@@ -15,14 +15,14 @@ public class RetryUtil {
      * @param retryCondition  重试的条件
      * @param retryInterval  重试间隔，ms
      * @param retryCount  重试次数
-     * @param exceptionally  调用method的异常处理
+     * @param exceptionHandle  调用method的异常处理
      * @param exception  如果重试次数用完还是失败，抛出的异常
      * @param <U>
      * @return
      */
     public static <U> U invoke(Supplier<U> method, Predicate<U> retryCondition,
                                long retryInterval,int retryCount,
-                                Function<Exception,U> exceptionally,
+                                Function<Exception,U> exceptionHandle,
                                Supplier<? extends RuntimeException> exception){
         if(method == null || retryCondition == null || exception == null) {
             throw new IllegalArgumentException("Invoke method,retry condition and exception can not be null");
@@ -31,9 +31,9 @@ public class RetryUtil {
         try{
             result = method.get();
         }catch (Exception e) {
-            if(exceptionally != null) {
+            if(exceptionHandle != null) {
                 // 异常处理
-                return exceptionally.apply(e);
+                return exceptionHandle.apply(e);
             }
             throw e;
         }
@@ -46,7 +46,7 @@ public class RetryUtil {
             try {
                 TimeUnit.MILLISECONDS.sleep(retryInterval);
             }catch (Exception e){}
-            return invoke(method,retryCondition,retryInterval,retryCount--,exceptionally,exception);
+            return invoke(method,retryCondition,retryInterval,retryCount-1,exceptionHandle,exception);
         }
         throw exception.get();
     }
