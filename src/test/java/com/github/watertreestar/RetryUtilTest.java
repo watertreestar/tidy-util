@@ -15,7 +15,8 @@ public class RetryUtilTest {
     public void test(){
 
         try{
-            RetryUtil.invoke(()->{return "watertreestar";},
+            RetryUtil.invoke(()->{
+                        System.out.println("do something");return "watertreestar";},
                     Objects::nonNull,
                     1000,
                     5,
@@ -26,7 +27,8 @@ public class RetryUtilTest {
 
         }
 
-        RetryUtil.invoke(()->{return "watertreestar";},
+        RetryUtil.invoke(()->{
+                    System.out.println("do something another");return "watertreestar";},
                 Objects::isNull,
                 1000,
                 5,
