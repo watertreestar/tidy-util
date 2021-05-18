@@ -49,12 +49,12 @@ public class StringUtil {
         return str;
     }
 
-    public static String extractPathFromJar(String jarURLPath){
-        if(jarURLPath == null) {
+    public static String extractPathFromJarEntry(String jarURLEntryPath){
+        if(jarURLEntryPath == null) {
             return null;
         }
-        int start = jarURLPath.indexOf(COLON_CHAR);
-        int end = jarURLPath.lastIndexOf(EXCLAMATION_CHAR);
-        return jarURLPath.substring(start + 1,end);
+        int start = jarURLEntryPath.indexOf(COLON_CHAR);
+        int end = jarURLEntryPath.lastIndexOf(EXCLAMATION_CHAR);
+        return jarURLEntryPath.substring(start + 1,end);
     }
 }

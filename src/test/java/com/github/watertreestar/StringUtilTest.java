@@ -44,4 +44,31 @@ public class StringUtilTest {
         String result = StringUtil.pathToPackage(str);
         Assert.assertEquals("com.github.watertreestar",result);
     }
+
+    @Test
+    public void testConcat(){
+        String s1 = "hello,";
+        String s2 = "watertreestar";
+
+        String result = StringUtil.concat(s1,s2);
+        Assert.assertEquals("hello,watertreestar",result);
+    }
+
+    @Test
+    public void testTrimSuffix(){
+        String str = "fajljljfa.xml";
+        String result = StringUtil.trimSuffix(str);
+        Assert.assertEquals("fajljljfa",result);
+
+        str = "fafafafafa";
+        result = StringUtil.trimSuffix(str);
+        Assert.assertEquals("fafafafafa",result);
+    }
+
+    public void testExtractPathFromJar(){
+        String jarPath = "file:/Users/young/.m2/repository/junit/junit/4.12/junit-4.12.jar!/org/junit";
+        String result = StringUtil.extractPathFromJarEntry(jarPath);
+        Assert.assertEquals("/Users/young/.m2/repository/junit/junit/4.12/junit-4.12.jar",jarPath);
+
+    }
 }

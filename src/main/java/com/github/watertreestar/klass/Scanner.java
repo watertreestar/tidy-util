@@ -86,7 +86,7 @@ public class Scanner {
      * @throws IOException
      */
     private List<String> scanJar(String path,String pkgPath) throws IOException {
-        path = StringUtil.extractPathFromJar(path);
+        path = StringUtil.extractPathFromJarEntry(path);
         JarFile jar = new JarFile(path);
 
         List<String> classNameList = new ArrayList<>(20);
