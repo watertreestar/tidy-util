@@ -87,12 +87,11 @@ public class TidyExecutor {
             throw new RuntimeException(e);
         } catch (TimeoutException e) {
             future.cancel(true);
-
             switch (task.getTimeoutPolicy()) {
                 case AbstractTask.TERMINATED:
                     task.setCompleted();
                     break;
-                case AbstractTask.RETRY:
+                case AbstractTask.RETRY:   // 重试，状态置为失败
                     task.setFailed();
                     break;
                 default:
