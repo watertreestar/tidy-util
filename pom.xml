@@ -10,6 +10,8 @@
 
     <properties>
         <jmh.version>1.26</jmh.version>
+        <contiperf.version>2.3.4</contiperf.version>
+        <junit.version>4.12</junit.version>
     </properties>
 
     <dependencies>
@@ -17,7 +19,7 @@
         <dependency>
             <groupId>org.databene</groupId>
             <artifactId>contiperf</artifactId>
-            <version>2.3.4</version>
+            <version>${contiperf.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -25,7 +27,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
 
