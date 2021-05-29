@@ -1,5 +1,6 @@
 package com.github.watertreestar.text;
 
+import com.github.watertreestar.text.parse.TextParser;
 import org.junit.Test;
 
 public class TextParserTest {
