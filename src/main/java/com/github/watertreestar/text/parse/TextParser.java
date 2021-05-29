@@ -1,4 +1,4 @@
-package com.github.watertreestar.text;
+package com.github.watertreestar.text.parse;
 
 public class TextParser {
     /**
