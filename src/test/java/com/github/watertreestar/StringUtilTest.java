@@ -62,13 +62,25 @@ public class StringUtilTest {
 
         str = "fafafafafa";
         result = StringUtil.trimSuffix(str);
-        Assert.assertEquals("fafafafafa",result);
+        Assert.assertEquals("fafafafafa", result);
     }
 
-    public void testExtractPathFromJar(){
+    @Test
+    public void testExtractPathFromJar() {
         String jarPath = "file:/Users/young/.m2/repository/junit/junit/4.12/junit-4.12.jar!/org/junit";
         String result = StringUtil.extractPathFromJarEntry(jarPath);
-        Assert.assertEquals("/Users/young/.m2/repository/junit/junit/4.12/junit-4.12.jar",jarPath);
+        Assert.assertEquals("/Users/young/.m2/repository/junit/junit/4.12/junit-4.12.jar", jarPath);
+    }
 
+    @Test
+    public void testIsBlank() {
+        boolean result = StringUtil.isBlank("");
+        Assert.assertTrue(result);
+        result = StringUtil.isBlank("   ");
+        Assert.assertTrue(result);
+        result = StringUtil.isBlank(" \n  ");
+        Assert.assertTrue(result);
+        result = StringUtil.isBlank("  .... ");
+        Assert.assertFalse(result);
     }
 }
