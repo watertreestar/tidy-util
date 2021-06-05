@@ -246,7 +246,7 @@ public class Token {
      * @return an encrypted token string that is expiring in {@link Life#SHORT} time period
      */
     @Deprecated
-    public static String generateToken(String secret, String oid, String... payload) {
+    public static String generateToken(String secret, String oid, String... payload) throws Exception {
         return generateToken(secret, Life.SHORT, oid, payload);
     }
 
@@ -258,7 +258,7 @@ public class Token {
      * @param payload the payload optionally indicate more information
      * @return an encrypted token string that is expiring in {@link Life#SHORT} time period
      */
-    public static String generateToken(byte[] secret, String oid, String... payload) {
+    public static String generateToken(byte[] secret, String oid, String... payload) throws Exception {
         return generateToken(secret, Life.SHORT, oid, payload);
     }
 
@@ -274,7 +274,7 @@ public class Token {
      * @return an encrypted token string that is expiring in {@link Life#SHORT} time period
      */
     @Deprecated
-    public static String generateToken(String secret, Life tl, String oid, String... payload) {
+    public static String generateToken(String secret, Life tl, String oid, String... payload) throws Exception {
         return generateToken(secret, tl.seconds, oid, payload);
     }
 
@@ -287,7 +287,7 @@ public class Token {
      * @param payload the payload optionally indicate more information
      * @return an encrypted token string that is expiring in {@link Life#SHORT} time period
      */
-    public static String generateToken(byte[] secret, Life tl, String oid, String... payload) {
+    public static String generateToken(byte[] secret, Life tl, String oid, String... payload) throws Exception {
         return generateToken(secret, tl.seconds, oid, payload);
     }
 
@@ -303,7 +303,7 @@ public class Token {
      * @return an encrypted token string that is expiring in {@link Life#SHORT} time period
      */
     @Deprecated
-    public static String generateToken(String secret, long seconds, String oid, String... payload) {
+    public static String generateToken(String secret, long seconds, String oid, String... payload) throws Exception {
         return generateToken(secret.getBytes(StandardCharsets.UTF_8), seconds, oid, payload);
     }
 
@@ -316,7 +316,7 @@ public class Token {
      * @param payload the payload optionally indicate more information
      * @return an encrypted token string that is expiring in {@link Life#SHORT} time period
      */
-    public static String generateToken(byte[] secret, long seconds, String oid, String... payload) {
+    public static String generateToken(byte[] secret, long seconds, String oid, String... payload) throws Exception {
         long due = Life.due(seconds);
         List<String> l = new ArrayList<String>(2 + payload.length);
         l.add(oid);
@@ -404,7 +404,12 @@ public class Token {
         if (StringUtil.anyBlank(oid, token)) {
             return false;
         }
-        String s = CryptoUtil.decryptAES(token, secret);
+        String s;
+        try {
+            s = CryptoUtil.decryptAES(token, secret);
+        } catch (Exception e) {
+            return false;
+        }
         String[] sa = s.split("\\|");
         if (sa.length < 2) return false;
         if (!StringUtil.isEqual(oid, sa[0])) return false;

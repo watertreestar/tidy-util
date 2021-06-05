@@ -32,7 +32,6 @@ public class AsyncHttpClient implements Closeable {
     }
 
     public void request(HttpRequest request, HttpHandler handler) throws IOException {
-        // TODO keep-alive support
         request.getHeaders().add("Connection", "close");
 
         SocketChannel socketChannel = SocketChannel.open();
