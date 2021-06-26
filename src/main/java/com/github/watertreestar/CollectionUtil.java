@@ -12,7 +12,6 @@ public class CollectionUtil {
 
     /**
      * Return a list copy
-     *
      * @param from
      * @param <E>
      * @return
@@ -21,5 +20,16 @@ public class CollectionUtil {
         List<E> dest = new ArrayList<>();
         Collections.copy(dest, from);
         return dest;
+    }
+
+    /**
+     * Determine whether the collection is empty
+     *
+     * @param c
+     * @return
+     */
+    public static boolean isEmpty(Collection<?> c) {
+        if (c == null) return true;
+        return c.size() < 1;
     }
 }
