@@ -1,7 +1,8 @@
 package com.github.watertreestar.event;
 
-import org.w3c.dom.events.Event;
-
+/**
+ * Provide event publish and registry
+ */
 public interface EventBus {
     /**
      * Register a subscriber for listeners

@@ -1,5 +1,8 @@
 package com.github.watertreestar.event;
 
+/**
+ * Root class for all event holds a event source
+ */
 public class Event {
     protected transient Object source;
 
