@@ -8,10 +8,14 @@
     <artifactId>tidy-util</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <url>https://github.com/watertreestar/tidy-util</url>
+    <description>Collection of util</description>
+
     <properties>
         <jmh.version>1.26</jmh.version>
         <contiperf.version>2.3.4</contiperf.version>
         <junit.version>4.12</junit.version>
+        <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
     </properties>
 
     <dependencies>
@@ -70,8 +74,68 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven.deploy.plugin.version}</version>
+            </plugin>
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>sonatype-nexus-release</id>
+            <name>Sonatype Nexus release</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <licenses>
+        <!-- Apache许可证 -->
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
+    <!-- SCM信息 -->
+    <scm>
+        <url>https://github.com/watertreestar/tidy-util</url>
+        <connection>scm:https://github.com/watertreestar/tidy-util.git</connection>
+        <developerConnection>scm:https://github.com/watertreestar/tidy-util.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <!-- 开发者信息 -->
+    <developers>
+        <developer>
+            <name>young</name>
+            <email>watertreestar@gmail.com</email>
+            <url>https://github.com/watertreestar</url>
+            <roles>
+                <role>software engineer</role>
+            </roles>
+        </developer>
+    </developers>
 </project>

@@ -69,7 +69,7 @@ public class StringUtilTest {
     public void testExtractPathFromJar() {
         String jarPath = "file:/Users/young/.m2/repository/junit/junit/4.12/junit-4.12.jar!/org/junit";
         String result = StringUtil.extractPathFromJarEntry(jarPath);
-        Assert.assertEquals("/Users/young/.m2/repository/junit/junit/4.12/junit-4.12.jar", jarPath);
+        Assert.assertEquals("/Users/young/.m2/repository/junit/junit/4.12/junit-4.12.jar", result);
     }
 
     @Test

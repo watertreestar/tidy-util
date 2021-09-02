@@ -71,7 +71,7 @@ public class PlaceholderResolver {
         //值索引
         int valueIndex = 0;
         StringBuilder result = new StringBuilder(content);
-        while (start != -1) {
+        while (start != -1 && result.charAt(start - 1) != '\\') {
             int end = result.indexOf(this.placeholderSuffix);
             String replaceContent = values[valueIndex++];
             result.replace(start, end + this.placeholderSuffix.length(), replaceContent);
