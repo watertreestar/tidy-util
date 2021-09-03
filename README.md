@@ -3,6 +3,7 @@
 🍎 A Java library for common tools
 
 ![](https://img.shields.io/badge/JDK-8%2B-brightgreen)
+![](https://github.com/watertreestar/tidy-util/workflows/ci/badge.svg)
 
 ## 🛠️ 安装
 
