@@ -1,0 +1,11 @@
+name: Java-CI
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - run: mvn test
+        name: run test
