@@ -4,6 +4,7 @@
 
 ![](https://img.shields.io/badge/JDK-8%2B-brightgreen)
 ![](https://github.com/watertreestar/tidy-util/workflows/Java-CI/badge.svg)
+![](https://codecov.io/gh/watertreestar/tidy-util/branch/main/graph/badge.svg?token=KEG1PQ5LAX)
 
 ## 🛠️ 安装
 
