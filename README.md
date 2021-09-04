@@ -12,6 +12,11 @@
 
 ```xml
 
+<dependency>
+  <groupId>com.github.watertreestar</groupId>
+  <artifactId>tidy-util</artifactId>
+  <version>1.0-SNAPSHOT</version>
+</dependency>
 ```
 
 ## 🎉 前言
