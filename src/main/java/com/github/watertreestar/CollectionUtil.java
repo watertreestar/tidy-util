@@ -6,7 +6,7 @@ import java.util.*;
  * Provides a serial of util to operate or return collection
  */
 public class CollectionUtil {
-    public static Collection listOf(Object... pieces) {
+    public static <T> Collection<T> listOf(T... pieces) {
         return Arrays.asList(pieces);
     }
 
